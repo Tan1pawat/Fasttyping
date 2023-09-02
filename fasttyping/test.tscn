@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://fse7irqaap5u"]
+
+[ext_resource type="Script" path="res://test.gd" id="1_qw5hj"]
+[ext_resource type="Texture2D" uid="uid://bndtrjswx6ibh" path="res://sprites/idle/idle_1.png" id="2_c4x5w"]
+[ext_resource type="Texture2D" uid="uid://5hu1r674wi08" path="res://BackGround/Ice_Dungeon_5.jpg" id="2_l5clg"]
+[ext_resource type="Texture2D" uid="uid://ctey5r5wugh5i" path="res://sprites/idle/idle_2.png" id="3_ley68"]
+[ext_resource type="Texture2D" uid="uid://bhl8aq7rrx4uk" path="res://sprites/idle/idle_3.png" id="4_00s4k"]
+[ext_resource type="Texture2D" uid="uid://bxyr2cupoxwnj" path="res://sprites/idle/idle_4.png" id="5_sj4r6"]
+[ext_resource type="Texture2D" uid="uid://dlqjqq7lt6wrv" path="res://sprites/idle/idle_5.png" id="6_m7bou"]
+[ext_resource type="Texture2D" uid="uid://7xomjjonoys1" path="res://sprites/idle/idle_6.png" id="7_vwtbe"]
+[ext_resource type="Script" path="res://Enemy.gd" id="9_lbvxn"]
+[ext_resource type="FontFile" uid="uid://djttyepa4kbks" path="res://front/PlayMeGames-Demo.otf" id="10_ppwxr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gp610"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_c4x5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ley68")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_00s4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sj4r6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m7bou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vwtbe")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_emwkh"]
+radius = 71.0
+height = 260.0
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(-2, 0)
+script = ExtResource("1_qw5hj")
+metadata/_edit_horizontal_guides_ = [-84.0]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 5.0
+offset_top = -29.0
+offset_right = 1173.0
+offset_bottom = 648.0
+texture = ExtResource("2_l5clg")
+expand_mode = 5
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(930, 424)
+
+[node name="Enemy" type="AnimatedSprite2D" parent="CharacterBody2D"]
+texture_filter = 1
+position = Vector2(0.999939, -3)
+scale = Vector2(2.81771, 3.62695)
+sprite_frames = SubResource("SpriteFrames_gp610")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.184892
+script = ExtResource("9_lbvxn")
+
+[node name="Promt" type="RichTextLabel" parent="CharacterBody2D"]
+offset_left = -928.0
+offset_top = -263.0
+offset_right = -136.0
+offset_bottom = -176.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_selected_color = Color(0.980392, 0.980392, 0.980392, 1)
+theme_override_colors/selection_color = Color(0.654902, 0.490196, 0, 1)
+theme_override_fonts/normal_font = ExtResource("10_ppwxr")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]test[/center]"
+scroll_active = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(3, -3)
+shape = SubResource("CapsuleShape2D_emwkh")
